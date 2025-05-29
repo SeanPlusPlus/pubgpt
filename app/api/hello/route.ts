@@ -6,7 +6,7 @@ export const revalidate = 0 // Prevent revalidation
 
 export async function GET() {
   return NextResponse.json(
-    { message: 'Hello, world!' },
+    { message: 'Hello, World!!' },
     {
       headers: {
         'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
