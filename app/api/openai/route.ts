@@ -67,16 +67,21 @@ export async function GET() {
     }
 
     const data = await openaiRes.json()
-    const raw = data.choices?.[0]?.message?.content || '{}'
+    let raw = data.choices?.[0]?.message?.content || '{}'
+
+    // Strip Markdown-style code fences if present
+    raw = raw
+      .trim()
+      .replace(/^```json/, '')
+      .replace(/^```/, '')
+      .replace(/```$/, '')
+      .trim()
 
     let parsed
     try {
       parsed = JSON.parse(raw)
     } catch (err) {
-      return NextResponse.json(
-        { error: 'Failed to parse JSON from OpenAI', raw, err },
-        { status: 500 }
-      )
+      return NextResponse.json({ error: 'Failed to parse JSON from OpenAI', raw }, { status: 500 })
     }
 
     return NextResponse.json(parsed, {
