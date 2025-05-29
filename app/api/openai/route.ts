@@ -73,7 +73,10 @@ export async function GET() {
     try {
       parsed = JSON.parse(raw)
     } catch (err) {
-      return NextResponse.json({ error: 'Failed to parse JSON from OpenAI', raw }, { status: 500 })
+      return NextResponse.json(
+        { error: 'Failed to parse JSON from OpenAI', raw, err },
+        { status: 500 }
+      )
     }
 
     return NextResponse.json(parsed, {
