@@ -21,31 +21,28 @@ const triviaTopics = [
   'Weird But True – Bizarre facts, Guinness records, odd inventions, and strange laws.',
 ]
 
-const generateTriviaPrompt = (topic: string) => `
-You are a pub quiz master creating a single trivia question for a live audience. The topic is: "${topic}"
+const generateTriviaJSONPrompt = (topic: string) => `
+You are a pub quiz master. Your task is to generate a fun and challenging trivia question on the topic: "${topic}".
 
-Your job is to write:
-- One fun and challenging trivia question based on the topic
-- Four answer choices labeled A, B, C, and D
-- The correct answer clearly marked in a separate line
+Return your response as a JSON object that strictly follows this schema:
 
-Format it like this:
+{
+  "question": "string (the trivia question)",
+  "choices": {
+    "A": "string",
+    "B": "string",
+    "C": "string",
+    "D": "string"
+  },
+  "answer": "A" | "B" | "C" | "D" (the letter of the correct answer)
+}
 
-Question: <the question>
-
-A. <answer choice>
-B. <answer choice>
-C. <answer choice>
-D. <answer choice>
-
-Correct Answer: <A, B, C, or D>
-
-Make the tone lively but clear, and avoid being too obscure or too easy. Do not include any explanation—just the formatted question and correct answer.
+Make the question clear and engaging, the choices diverse, and ensure the correct answer is accurate. Do not include any extra explanation or commentary—just the JSON.
 `
 
 export async function GET() {
   const randomTriviaTopic = triviaTopics[Math.floor(Math.random() * triviaTopics.length)]
-  const prompt = generateTriviaPrompt(randomTriviaTopic)
+  const prompt = generateTriviaJSONPrompt(randomTriviaTopic)
 
   try {
     const openaiRes = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -70,16 +67,20 @@ export async function GET() {
     }
 
     const data = await openaiRes.json()
-    const response = data.choices?.[0]?.message?.content || 'No response.'
+    const raw = data.choices?.[0]?.message?.content || '{}'
 
-    return NextResponse.json(
-      { prompt, response },
-      {
-        headers: {
-          'Cache-Control': 'no-store',
-        },
-      }
-    )
+    let parsed
+    try {
+      parsed = JSON.parse(raw)
+    } catch (err) {
+      return NextResponse.json({ error: 'Failed to parse JSON from OpenAI', raw }, { status: 500 })
+    }
+
+    return NextResponse.json(parsed, {
+      headers: {
+        'Cache-Control': 'no-store',
+      },
+    })
   } catch (error: unknown) {
     const err = error as ErrorWithMessage
     return NextResponse.json({ error: 'Server error', details: err.message }, { status: 500 })
