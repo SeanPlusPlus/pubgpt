@@ -4,6 +4,10 @@ import { NextResponse } from 'next/server'
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
 
+interface ErrorWithMessage {
+  message: string
+}
+
 const prompts = [
   'Write a bedtime story about a space giraffe.',
   'Explain quantum physics like I’m five.',
@@ -48,7 +52,8 @@ export async function GET() {
         },
       }
     )
-  } catch (error: any) {
-    return NextResponse.json({ error: 'Server error', details: error.message }, { status: 500 })
+  } catch (error: unknown) {
+    const err = error as ErrorWithMessage
+    return NextResponse.json({ error: 'Server error', details: err.message }, { status: 500 })
   }
 }
