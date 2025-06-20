@@ -89,9 +89,17 @@ export function QuestionCard() {
           <DialogHeader>
             <DialogTitle>You selected:</DialogTitle>
           </DialogHeader>
+
           <p className="text-muted-foreground">
             {selectedOption}. {data.choices[selectedOption]}
           </p>
+
+          <p className={selectedOption === data.answer ? 'text-green-600' : 'text-red-600'}>
+            {selectedOption === data.answer
+              ? '✅ Correct!'
+              : `❌ Incorrect. Correct answer is ${data.answer}. ${data.choices[data.answer]}`}
+          </p>
+
           <Button
             onClick={() => {
               setIsOpen(false)
