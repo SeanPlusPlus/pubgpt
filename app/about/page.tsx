@@ -24,6 +24,17 @@ export default function AboutPage() {
               unpredictable, and just a little bit cheeky.
             </p>
             <p>
+              Under the hood, the trivia engine randomly selects from a pool of themed categories
+              like classic cinema, world geography, or “weird but true” facts. It sends a structured
+              prompt to the LLM requesting a strict JSON response containing a question, four
+              labeled choices, and the correct answer’s letter.
+            </p>
+            <p>
+              After receiving the response, the backend strips any extra Markdown formatting, parses
+              the raw JSON safely, and serves it directly to the client for rendering. This makes
+              the game feel fast, seamless, and robust—even when the LLM tries to get fancy.
+            </p>
+            <p>
               Got feedback? Found a funny question? Just wanna say hi?{' '}
               <a
                 href="https://twitter.com/seanplusplus"
