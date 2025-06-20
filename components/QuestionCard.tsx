@@ -18,23 +18,23 @@ export function QuestionCard() {
     { value: 'D', label: 'D. Madrid' },
   ]
 
+  const handleSelect = (value: string) => {
+    setSelectedOption(value)
+    setIsOpen(true)
+  }
+
   return (
     <>
       <Card className="w-full max-w-md">
         <CardContent className="p-6 space-y-4">
           <h2 className="text-lg font-semibold">What is the capital of France?</h2>
-          <RadioGroup
-            className="space-y-2"
-            value={selectedOption}
-            onValueChange={(value) => {
-              setSelectedOption(value)
-              setIsOpen(true)
-            }}
-          >
+          <RadioGroup value={selectedOption} onValueChange={handleSelect} className="space-y-2">
             {options.map(({ value, label }) => (
               <div key={value} className="flex items-center space-x-2">
                 <RadioGroupItem value={value} id={`option-${value}`} />
-                <Label htmlFor={`option-${value}`}>{label}</Label>
+                <Label htmlFor={`option-${value}`} className="cursor-pointer">
+                  {label}
+                </Label>
               </div>
             ))}
           </RadioGroup>
@@ -46,10 +46,15 @@ export function QuestionCard() {
           <DialogHeader>
             <DialogTitle>You selected:</DialogTitle>
           </DialogHeader>
-          <p className="text-muted-foreground">
-            {options.find((o) => o.value === selectedOption)?.label}
-          </p>
-          <Button onClick={() => setIsOpen(false)}>Next Question</Button>
+          <p className="text-muted-foreground">{selectedOption}</p>
+          <Button
+            onClick={() => {
+              setSelectedOption('')
+              setIsOpen(false)
+            }}
+          >
+            Next Question
+          </Button>
         </DialogContent>
       </Dialog>
     </>
