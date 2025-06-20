@@ -9,7 +9,7 @@ export function QuestionCard() {
     <Card className="w-full max-w-md">
       <CardContent className="p-6 space-y-4">
         <h2 className="text-lg font-semibold">What is the capital of France?</h2>
-        <RadioGroup defaultValue="A" className="space-y-2">
+        <RadioGroup className="space-y-2">
           {[
             { value: 'A', label: 'A. Paris' },
             { value: 'B', label: 'B. Rome' },
