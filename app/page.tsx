@@ -1,3 +1,5 @@
+import { QuestionCard } from '@/components/QuestionCard'
+
 export default function Home() {
   return (
     <div className="grid grid-rows-[40px_1fr_20px] items-center justify-items-center min-h-screen gap-16 font-[family-name:var(--font-geist-sans)]">
@@ -16,6 +18,7 @@ export default function Home() {
       {/* Main content */}
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
         <h1 className="text-3xl">PubGPT</h1>
+        <QuestionCard />
       </main>
     </div>
   )
