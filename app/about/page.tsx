@@ -15,8 +15,8 @@ export default function AboutPage() {
             <p>
               We use the <strong>OpenAI API</strong> to dynamically generate unique pub-style quiz
               questions based on a carefully crafted prompt. Each question includes four plausible
-              multiple-choice answers and is written in the fun, competitive tone you'd find in a
-              traditional trivia night.
+              multiple-choice answers and is written in the fun, competitive tone you&apos;d find in
+              a traditional trivia night.
             </p>
             <p>
               By leveraging the latest LLM models, PubGPT ensures each quiz session is fresh,
