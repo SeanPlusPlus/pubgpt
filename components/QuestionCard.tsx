@@ -71,12 +71,15 @@ export function QuestionCard() {
       <Card className="w-full max-w-md">
         <CardContent className="p-6 space-y-4">
           <h2 className="text-lg font-semibold">{data.question}</h2>
-          <RadioGroup value={selectedOption} onValueChange={handleSelect} className="space-y-2">
+          <RadioGroup value={selectedOption} onValueChange={handleSelect} className="space-y-4">
             {Object.entries(data.choices).map(([key, label]) => (
-              <div key={key} className="flex items-center space-x-2">
+              <div
+                key={key}
+                className="flex items-center gap-3 p-4 rounded-lg border border-border hover:bg-accent/40 transition-colors"
+              >
                 <RadioGroupItem value={key} id={`option-${key}`} />
-                <Label htmlFor={`option-${key}`} className="cursor-pointer">
-                  {key}. {label}
+                <Label htmlFor={`option-${key}`} className="cursor-pointer text-sm leading-snug">
+                  <span className="font-medium">{key}.</span> {label}
                 </Label>
               </div>
             ))}
