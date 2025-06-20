@@ -37,7 +37,7 @@ Return your response as a JSON object that strictly follows this schema:
   "answer": "A" | "B" | "C" | "D" (the letter of the correct answer)
 }
 
-Make the question clear and engaging, the choices diverse, and ensure the correct answer is accurate. Do not include any extra explanation or commentary—just the JSON.
+Make the question clear, engaging, fun, and challenging. The choices should be diverse, and ensure the correct answer is accurate. Do not include any extra explanation or commentary—just the JSON.
 `
 
 export async function GET() {
