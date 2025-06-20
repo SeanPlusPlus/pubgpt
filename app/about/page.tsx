@@ -14,7 +14,7 @@ export default function AboutPage() {
           </p>
           <div className="text-sm leading-relaxed text-gray-700 space-y-4">
             <p>
-              We use the <strong>OpenAI API</strong> to dynamically generate unique pub-style quiz
+              I use the <strong>OpenAI API</strong> to dynamically generate unique pub-style quiz
               questions based on a carefully crafted prompt. Each question includes four plausible
               multiple-choice answers and is written in the fun, competitive tone you&apos;d find in
               a traditional trivia night.
@@ -22,6 +22,18 @@ export default function AboutPage() {
             <p>
               By leveraging the latest LLM models, PubGPT ensures each quiz session is fresh,
               unpredictable, and just a little bit cheeky.
+            </p>
+            <p>
+              Got feedback? Found a funny question? Just wanna say hi?{' '}
+              <a
+                href="https://twitter.com/yourhandle"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline"
+              >
+                Ping me on Twitter
+              </a>{' '}
+              — I’d love to hear what you think!
             </p>
           </div>
         </div>
