@@ -26,7 +26,7 @@ export default function AboutPage() {
             <p>
               Got feedback? Found a funny question? Just wanna say hi?{' '}
               <a
-                href="https://twitter.com/yourhandle"
+                href="https://twitter.com/seanplusplus"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:underline"
