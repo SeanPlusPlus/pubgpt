@@ -5,7 +5,7 @@ export function SiteFooter() {
     <footer className="text-xs text-muted-foreground pb-4 text-center">
       Built with ❤️ by{' '}
       <a
-        href="https://twitter.com/SeanPlusPlus"
+        href="https://seanplusplus.com/"
         className="underline hover:text-primary"
         target="_blank"
         rel="noopener noreferrer"
