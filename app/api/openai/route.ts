@@ -1,5 +1,6 @@
 // app/api/openai/route.ts
 import { NextResponse } from 'next/server'
+import { mockQuestions } from './mock'
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
@@ -40,7 +41,19 @@ Return your response as a JSON object that strictly follows this schema:
 Make the question clear, engaging, fun, and challenging. The choices should be diverse, and ensure the correct answer is accurate. Do not include any extra explanation or commentary—just the JSON.
 `
 
-export async function GET() {
+export async function GET(request: Request) {
+  const url = new URL(request.url)
+  const isMock = url.searchParams.get('mock') === 'true'
+
+  if (isMock) {
+    const randomMockQuestion = mockQuestions[Math.floor(Math.random() * mockQuestions.length)]
+    return NextResponse.json(randomMockQuestion, {
+      headers: {
+        'Cache-Control': 'no-store',
+      },
+    })
+  }
+
   const randomTriviaTopic = triviaTopics[Math.floor(Math.random() * triviaTopics.length)]
   const prompt = generateTriviaJSONPrompt(randomTriviaTopic)
 
