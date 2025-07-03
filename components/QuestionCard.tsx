@@ -13,7 +13,11 @@ type QuestionData = {
   answer: string
 }
 
-export function QuestionCard() {
+type QuestionCardProps = {
+  mock?: boolean
+}
+
+export function QuestionCard({ mock = false }: QuestionCardProps) {
   const [selectedOption, setSelectedOption] = useState('')
   const [isOpen, setIsOpen] = useState(false)
   const [data, setData] = useState<QuestionData | null>(null)
@@ -22,7 +26,8 @@ export function QuestionCard() {
   const fetchQuestion = async () => {
     setLoading(true)
     setSelectedOption('')
-    const res = await fetch('/api/openai')
+    const url = mock ? '/api/openai?mock=true' : '/api/openai'
+    const res = await fetch(url)
     const json = await res.json()
     setData(json)
     setLoading(false)
@@ -30,7 +35,7 @@ export function QuestionCard() {
 
   useEffect(() => {
     fetchQuestion()
-  }, [])
+  }, [mock])
 
   const handleSelect = (value: string) => {
     setSelectedOption(value)
