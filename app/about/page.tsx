@@ -14,25 +14,37 @@ export default function AboutPage() {
           </p>
           <div className="text-sm leading-relaxed text-gray-700 space-y-4">
             <p>
-              I use the <strong>OpenAI API</strong> to dynamically generate unique pub-style quiz
-              questions based on a carefully crafted prompt. Each question includes four plausible
-              multiple-choice answers and is written in the fun, competitive tone you&apos;d find in
-              a traditional trivia night.
+              I use the <strong>OpenAI API</strong> (specifically the GPT-4 model) to dynamically
+              generate unique pub-style quiz questions based on a carefully crafted prompt. Each
+              question includes four plausible multiple-choice answers, written in the fun,
+              competitive tone you’d expect at a traditional trivia night.
             </p>
             <p>
-              By leveraging the latest LLM models, PubGPT ensures each quiz session is fresh,
-              unpredictable, and just a little bit cheeky.
+              By leveraging GPT-4, PubGPT ensures each quiz session is fresh, unpredictable, and
+              just a little bit cheeky.
             </p>
             <p>
               Under the hood, the trivia engine randomly selects from a pool of themed categories
               like classic cinema, world geography, or “weird but true” facts. It sends a structured
-              prompt to the LLM requesting a strict JSON response containing a question, four
-              labeled choices, and the correct answer’s letter.
+              prompt to GPT-4, requesting a strict JSON response containing a question, four labeled
+              choices, and the correct answer’s letter.
             </p>
             <p>
               After receiving the response, the backend strips any extra Markdown formatting, parses
               the raw JSON safely, and serves it directly to the client for rendering. This makes
-              the game feel fast, seamless, and robust—even when the LLM tries to get fancy.
+              the game feel fast, seamless, and robust—even when GPT-4 tries to get fancy.
+            </p>
+            <p>
+              Want to peek under the hood or contribute? Check out the code on{' '}
+              <a
+                href="https://github.com/SeanPlusPlus/pubgpt"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline"
+              >
+                GitHub
+              </a>
+              .
             </p>
             <p>
               Got feedback? Found a funny question? Just wanna say hi?{' '}
