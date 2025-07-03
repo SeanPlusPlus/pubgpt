@@ -18,7 +18,7 @@ PubGPT is an AI-powered pub quiz game that generates trivia questions on demand 
 
 ## 🚀 Demo
 
-_Coming soon!_
+https://pubgpt.vercel.app/
 
 ---
 
