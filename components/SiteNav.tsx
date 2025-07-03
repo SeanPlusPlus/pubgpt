@@ -2,14 +2,25 @@
 
 export function SiteNav() {
   return (
-    <nav className="row-start-1 w-full text-sm">
-      <div className="max-w-screen-lg mx-auto px-4 mt-4 flex gap-8">
-        <a href="/" className="hover:underline">
-          Home
+    <nav className="w-full bg-white/80 backdrop-blur border-b border-border">
+      <div className="max-w-screen-lg mx-auto px-6 h-10 flex items-center justify-between">
+        <a
+          href="/"
+          className="text-lg font-bold text-gray-800 hover:text-primary transition-colors"
+        >
+          PubGPT
         </a>
-        <a href="/about" className="hover:underline">
-          About
-        </a>
+        <div className="flex gap-4">
+          <a href="/" className="text-gray-600 hover:text-gray-900 font-medium transition-colors">
+            Home
+          </a>
+          <a
+            href="/about"
+            className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
+          >
+            About
+          </a>
+        </div>
       </div>
     </nav>
   )
