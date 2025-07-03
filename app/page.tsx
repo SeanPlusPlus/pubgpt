@@ -13,7 +13,7 @@ export default function Home() {
             <h1 className="text-3xl font-bold">PubGPT</h1>
             <p className="text-muted-foreground text-sm">An LLM-powered pub quiz game</p>
           </div>
-          <QuestionCard />
+          <QuestionCard mock={process.env.NODE_ENV === 'development'} />
         </div>
       </main>
 
