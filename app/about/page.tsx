@@ -3,7 +3,7 @@ import { SiteFooter } from '@/components/SiteFooter'
 
 export default function AboutPage() {
   return (
-    <div className="grid grid-rows-[40px_1fr_auto] items-center justify-items-center min-h-screen gap-16 font-[family-name:var(--font-geist-sans)] bg-muted">
+    <div className="grid grid-rows-[40px_1fr_auto] justify-items-center min-h-screen gap-16 font-[family-name:var(--font-geist-sans)] bg-muted">
       <SiteNav />
 
       <main className="row-start-2 w-full max-w-xl px-4">
