@@ -3,7 +3,7 @@
 export function SiteNav() {
   return (
     <nav className="row-start-1 w-full text-sm">
-      <div className="max-w-screen-lg mx-auto px-4 flex gap-8">
+      <div className="max-w-screen-lg mx-auto px-4 mt-4 flex gap-8">
         <a href="/" className="hover:underline">
           Home
         </a>
