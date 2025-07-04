@@ -6,6 +6,9 @@ import { SiteFooter } from '@/components/SiteFooter'
 import { QuestionCard } from '@/components/QuestionCard'
 import { Button } from '@/components/ui/button'
 
+// === Toggle this flag for testing ===
+const USE_MOCK = process.env.NODE_ENV === 'development'
+
 export default function Home() {
   const [hasStarted, setHasStarted] = useState(false)
 
@@ -26,7 +29,7 @@ export default function Home() {
               </Button>
             </div>
           ) : (
-            <QuestionCard mock={process.env.NODE_ENV === 'development'} />
+            <QuestionCard mock={USE_MOCK} />
           )}
         </div>
       </main>

@@ -1,6 +1,8 @@
 // app/api/openai/route.ts
 import { NextResponse } from 'next/server'
 import { mockQuestions } from './mock'
+import { triviaTopics } from './triviaTopics'
+import { generateTriviaJSONPrompt } from './generateTriviaJSONPrompt'
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
@@ -8,38 +10,6 @@ export const revalidate = 0
 interface ErrorWithMessage {
   message: string
 }
-
-const triviaTopics = [
-  'Classic Cinema – Think pre-2000s movies, iconic directors, and Oscar-winning performances.',
-  'World Geography – Capital cities, landmarks, borders, and natural wonders.',
-  'Pop Music Through the Decades – From Elvis to Beyoncé, hits, lyrics, and legendary albums.',
-  'Science & Nature – Chemistry, biology, physics, animals, and the natural world.',
-  'Literature & Books – Famous authors, opening lines, banned books, and literary awards.',
-  'Food & Drink – Cuisine, cocktails, ingredients, and famous chefs.',
-  'History & Politics – Major wars, leaders, revolutions, and historical oddities.',
-  'Sports & Games – Olympics, chess, soccer, Super Bowl MVPs, and more.',
-  'TV Shows of the 2000s – Think Lost, Breaking Bad, The Office, etc.',
-  'Weird But True – Bizarre facts, Guinness records, odd inventions, and strange laws.',
-]
-
-const generateTriviaJSONPrompt = (topic: string) => `
-You are a pub quiz master. Your task is to generate a fun and challenging trivia question on the topic: "${topic}".
-
-Return your response as a JSON object that strictly follows this schema:
-
-{
-  "question": "string (the trivia question)",
-  "choices": {
-    "A": "string",
-    "B": "string",
-    "C": "string",
-    "D": "string"
-  },
-  "answer": "A" | "B" | "C" | "D" (the letter of the correct answer)
-}
-
-Make the question clear, engaging, fun, and challenging. The choices should be diverse, and ensure the correct answer is accurate. Do not include any extra explanation or commentary—just the JSON.
-`
 
 export async function GET(request: Request) {
   const url = new URL(request.url)
