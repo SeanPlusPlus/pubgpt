@@ -80,10 +80,10 @@ export function QuestionCard({ mock = false }: QuestionCardProps) {
   return (
     <>
       <Card className="w-full max-w-md">
-        <CardContent className="p-6 space-y-4">
-          <h2 className="text-lg font-semibold">{data.question}</h2>
+        <CardContent className="p-2 space-y-3">
+          <h2 className="text-xl font-normal leading-snug text-gray-900">{data.question}</h2>
 
-          <RadioGroup value={selectedOption} onValueChange={handleSelect} className="space-y-4">
+          <RadioGroup value={selectedOption} onValueChange={handleSelect} className="space-y-3">
             {Object.entries(data.choices).map(([key, label]) => (
               <div
                 key={key}
@@ -98,7 +98,7 @@ export function QuestionCard({ mock = false }: QuestionCardProps) {
                 className="
                   flex flex-nowrap items-center gap-3
                   w-full text-left
-                  p-4 rounded-lg border border-border
+                  p-3 rounded-lg border border-border
                   hover:bg-accent/40 transition-colors
                   cursor-pointer
                 "
@@ -132,7 +132,7 @@ export function QuestionCard({ mock = false }: QuestionCardProps) {
           </DialogHeader>
 
           <div className="space-y-4">
-            <p className="font-medium">{data.question}</p>
+            <p className="text-base font-medium text-gray-900">{data.question}</p>
 
             <div className="space-y-2">
               {Object.entries(data.choices).map(([key, label]) => {
