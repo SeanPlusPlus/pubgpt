@@ -21,7 +21,7 @@ export default function Home() {
                 <h1 className="text-3xl font-bold">PubGPT</h1>
                 <p className="text-muted-foreground text-sm">An LLM-powered pub quiz game</p>
               </div>
-              <Button onClick={() => setHasStarted(true)} size="lg">
+              <Button onClick={() => setHasStarted(true)} size="lg" className="cursor-pointer">
                 Play Now
               </Button>
             </div>

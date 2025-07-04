@@ -106,7 +106,7 @@ export function QuestionCard({ mock = false }: QuestionCardProps) {
                 <RadioGroupItem
                   value={key}
                   id={`option-${key}`}
-                  className="flex-shrink-0 h-5 w-5"
+                  className="flex-shrink-0 h-5 w-5 pointer-events-none"
                 />
                 <span className="text-sm leading-snug break-words">
                   <span className="font-medium">{key}.</span> {label}
@@ -171,6 +171,7 @@ export function QuestionCard({ mock = false }: QuestionCardProps) {
           </div>
 
           <Button
+            className="cursor-pointer"
             onClick={() => {
               setIsOpen(false)
               fetchQuestion()
