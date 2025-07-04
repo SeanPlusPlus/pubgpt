@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import ScoreBoard from './ScoreBoard'
@@ -98,7 +99,18 @@ export default function QuestionResultDialog({
             <p className="text-base font-medium text-gray-900">
               You answered {correctCount} out of 10 questions correctly!
             </p>
+
             <ScoreBoard scores={scores} hideTitle={true} />
+
+            <div className="pt-4 flex justify-center">
+              <Image
+                src="/logo.png"
+                alt="PubGPT Logo"
+                width={100}
+                height={100}
+                className="rounded"
+              />
+            </div>
           </div>
         )}
 
