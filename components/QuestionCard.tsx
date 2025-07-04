@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react'
 import { Card, CardContent } from '@/components/ui/card'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-import { Label } from '@/components/ui/label'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { loadingMessages } from './loadingMessages'
@@ -88,10 +87,20 @@ export function QuestionCard({ mock = false }: QuestionCardProps) {
             {Object.entries(data.choices).map(([key, label]) => (
               <div
                 key={key}
+                onClick={() => handleSelect(key)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    handleSelect(key)
+                  }
+                }}
                 className="
-                  flex flex-nowrap items-center gap-3 
-                  p-4 rounded-lg border border-border 
+                  flex flex-nowrap items-center gap-3
+                  w-full text-left
+                  p-4 rounded-lg border border-border
                   hover:bg-accent/40 transition-colors
+                  cursor-pointer
                 "
               >
                 <RadioGroupItem
@@ -99,12 +108,9 @@ export function QuestionCard({ mock = false }: QuestionCardProps) {
                   id={`option-${key}`}
                   className="flex-shrink-0 h-5 w-5"
                 />
-                <Label
-                  htmlFor={`option-${key}`}
-                  className="cursor-pointer text-sm leading-snug break-words"
-                >
+                <span className="text-sm leading-snug break-words">
                   <span className="font-medium">{key}.</span> {label}
-                </Label>
+                </span>
               </div>
             ))}
           </RadioGroup>
