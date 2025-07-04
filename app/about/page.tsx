@@ -14,10 +14,19 @@ export default function AboutPage() {
           </p>
           <div className="text-sm leading-relaxed text-gray-700 space-y-4">
             <p>
+              Hey there! I’m Sean 👋 — a software engineer who’s always loved building little games
+              and experiments to explore cool tech. Whether it’s quirky side projects or tools to
+              learn something new, I’m all about having fun while coding. 🎲✨
+            </p>
+            <p>
+              That’s what inspired me to create <strong>PubGPT</strong>: an AI-driven pub quiz
+              experience that whips up fresh trivia questions on the fly.
+            </p>
+            <p>
               I use the <strong>OpenAI API</strong> (specifically the GPT-4 model) to dynamically
               generate unique pub-style quiz questions based on a carefully crafted prompt. Each
               question includes four plausible multiple-choice answers, written in the fun,
-              competitive tone you’d expect at a traditional trivia night.
+              competitive tone you’d expect at a traditional trivia night. 🧠
             </p>
             <p>
               By leveraging GPT-4, PubGPT ensures each quiz session is fresh, unpredictable, and
@@ -32,7 +41,7 @@ export default function AboutPage() {
             <p>
               After receiving the response, the backend strips any extra Markdown formatting, parses
               the raw JSON safely, and serves it directly to the client for rendering. This makes
-              the game feel fast, seamless, and robust—even when GPT-4 tries to get fancy.
+              the game feel fast, seamless, and robust—even when GPT-4 tries to get fancy. ⚡️
             </p>
             <p>
               Want to peek under the hood or contribute? Check out the code on{' '}
@@ -57,6 +66,18 @@ export default function AboutPage() {
                 Ping me on Twitter
               </a>{' '}
               — I’d love to hear what you think!
+            </p>
+            <p>
+              Enjoying PubGPT and wanna buy me a pint? 🍺 You can send a virtual round my way on{' '}
+              <a
+                href="https://venmo.com/YourVenmoHandle"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline"
+              >
+                Venmo
+              </a>
+              . Cheers!
             </p>
           </div>
         </div>
