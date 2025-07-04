@@ -70,7 +70,7 @@ export default function AboutPage() {
             <p>
               Enjoying PubGPT and wanna buy me a pint? 🍺 You can send a virtual round my way on{' '}
               <a
-                href="https://venmo.com/YourVenmoHandle"
+                href="https://venmo.com/SeanPlusPlus"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:underline"
