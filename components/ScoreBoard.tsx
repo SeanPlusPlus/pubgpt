@@ -1,10 +1,6 @@
 'use client'
 
-import { useState } from 'react'
-
-export default function ScoreBoard() {
-  const [scores, setScores] = useState(Array(10).fill(null))
-
+export default function ScoreBoard({ scores }: { scores: (null | 'success' | 'error')[] }) {
   const getEmoji = (status: string | null) => {
     if (status === 'success') return '✅'
     if (status === 'error') return '❌'

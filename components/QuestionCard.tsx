@@ -24,6 +24,8 @@ export function QuestionCard({ mock = false }: QuestionCardProps) {
   const [data, setData] = useState<QuestionData | null>(null)
   const [loading, setLoading] = useState(true)
   const [loadingMessage, setLoadingMessage] = useState('')
+  const [scores, setScores] = useState<(null | 'success' | 'error')[]>(Array(10).fill(null))
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
 
   const fetchQuestion = async () => {
     setLoading(true)
@@ -44,6 +46,29 @@ export function QuestionCard({ mock = false }: QuestionCardProps) {
   const handleSelect = (value: string) => {
     setSelectedOption(value)
     setIsOpen(true)
+  }
+
+  const handleNext = () => {
+    setScores((prev) => {
+      const newScores = [...prev]
+      newScores[currentQuestionIndex] = selectedOption === data?.answer ? 'success' : 'error'
+      return newScores
+    })
+
+    setCurrentQuestionIndex((prev) => prev + 1)
+    setIsOpen(false)
+
+    if (currentQuestionIndex + 1 < 10) {
+      fetchQuestion()
+    }
+  }
+
+  const handleResetGame = () => {
+    setScores(Array(10).fill(null))
+    setCurrentQuestionIndex(0)
+    setSelectedOption('')
+    setIsOpen(false)
+    fetchQuestion()
   }
 
   if (loading) {
@@ -77,53 +102,58 @@ export function QuestionCard({ mock = false }: QuestionCardProps) {
   if (!data) return null
 
   const isCorrect = selectedOption === data.answer
+  const isGameOver = currentQuestionIndex >= 10
+
+  const correctCount = scores.filter((s) => s === 'success').length
 
   return (
     <>
-      <Card className="w-full max-w-md">
-        <CardContent className="p-2 space-y-3">
-          <h2 className="text-xl font-normal leading-snug text-gray-900">{data.question}</h2>
+      {!isGameOver && (
+        <Card className="w-full max-w-md">
+          <CardContent className="p-2 space-y-3">
+            <h2 className="text-xl font-normal leading-snug text-gray-900">{data.question}</h2>
 
-          <RadioGroup value={selectedOption} onValueChange={handleSelect} className="space-y-3">
-            {Object.entries(data.choices).map(([key, label]) => (
-              <div
-                key={key}
-                onClick={() => handleSelect(key)}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    handleSelect(key)
-                  }
-                }}
-                className="
-                  flex flex-nowrap items-center gap-3
-                  w-full text-left
-                  p-3 rounded-lg border border-border
-                  hover:bg-accent/40 transition-colors
-                  cursor-pointer
-                "
-              >
-                <RadioGroupItem
-                  value={key}
-                  id={`option-${key}`}
-                  className="flex-shrink-0 h-5 w-5 pointer-events-none"
-                />
-                <span className="text-sm leading-snug break-words">
-                  <span className="font-medium">{key}.</span> {label}
-                </span>
-              </div>
-            ))}
-          </RadioGroup>
+            <RadioGroup value={selectedOption} onValueChange={handleSelect} className="space-y-3">
+              {Object.entries(data.choices).map(([key, label]) => (
+                <div
+                  key={key}
+                  onClick={() => handleSelect(key)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      handleSelect(key)
+                    }
+                  }}
+                  className="
+                    flex flex-nowrap items-center gap-3
+                    w-full text-left
+                    p-3 rounded-lg border border-border
+                    hover:bg-accent/40 transition-colors
+                    cursor-pointer
+                  "
+                >
+                  <RadioGroupItem
+                    value={key}
+                    id={`option-${key}`}
+                    className="flex-shrink-0 h-5 w-5 pointer-events-none"
+                  />
+                  <span className="text-sm leading-snug break-words">
+                    <span className="font-medium">{key}.</span> {label}
+                  </span>
+                </div>
+              ))}
+            </RadioGroup>
 
-          <ScoreBoard />
-        </CardContent>
-      </Card>
+            <ScoreBoard scores={scores} />
+          </CardContent>
+        </Card>
+      )}
 
       <Dialog
-        open={isOpen}
+        open={isOpen || isGameOver}
         onOpenChange={(open) => {
-          if (!open) {
+          if (!open && !isGameOver) {
             fetchQuestion()
           }
           setIsOpen(open)
@@ -131,56 +161,72 @@ export function QuestionCard({ mock = false }: QuestionCardProps) {
       >
         <DialogContent className="space-y-2">
           <DialogHeader>
-            <DialogTitle className="text-lg font-bold">Results</DialogTitle>
+            <DialogTitle className="text-lg font-bold">
+              {isGameOver ? 'Game Over' : 'Results'}
+            </DialogTitle>
           </DialogHeader>
 
-          <div className="space-y-4">
-            <p className="text-base font-medium text-gray-900">{data.question}</p>
+          {!isGameOver && (
+            <div className="space-y-4">
+              <p className="text-base font-medium text-gray-900">{data.question}</p>
 
-            <div className="space-y-2">
-              {Object.entries(data.choices).map(([key, label]) => {
-                const isSelected = key === selectedOption
-                const isAnswer = key === data.answer
+              <div className="space-y-2">
+                {Object.entries(data.choices).map(([key, label]) => {
+                  const isSelected = key === selectedOption
+                  const isAnswer = key === data.answer
 
-                let bg = 'bg-gray-100'
-                if (isAnswer && isSelected) {
-                  bg = 'bg-green-100'
-                } else if (isAnswer) {
-                  bg = 'bg-green-50'
-                } else if (isSelected) {
-                  bg = 'bg-red-100'
-                }
+                  let bg = 'bg-gray-100'
+                  if (isAnswer && isSelected) {
+                    bg = 'bg-green-100'
+                  } else if (isAnswer) {
+                    bg = 'bg-green-50'
+                  } else if (isSelected) {
+                    bg = 'bg-red-100'
+                  }
 
-                return (
-                  <div
-                    key={key}
-                    className={`p-3 rounded border border-border ${bg} flex justify-between`}
-                  >
-                    <span className="text-sm">
-                      <span className="font-bold">{key}.</span> {label}
-                    </span>
-                    {isAnswer && <span className="text-green-700 font-semibold">Correct</span>}
-                    {!isAnswer && isSelected && (
-                      <span className="text-red-700 font-semibold">Your choice</span>
-                    )}
-                  </div>
-                )
-              })}
+                  return (
+                    <div
+                      key={key}
+                      className={`p-3 rounded border border-border ${bg} flex justify-between`}
+                    >
+                      <span className="text-sm">
+                        <span className="font-bold">{key}.</span> {label}
+                      </span>
+                      {isAnswer && <span className="text-green-700 font-semibold">Correct</span>}
+                      {!isAnswer && isSelected && (
+                        <span className="text-red-700 font-semibold">Your choice</span>
+                      )}
+                    </div>
+                  )
+                })}
+              </div>
+
+              <p className={isCorrect ? 'text-green-600' : 'text-red-600'}>
+                {isCorrect ? '✅ Correct!' : '❌ Incorrect.'}
+              </p>
             </div>
+          )}
 
-            <p className={isCorrect ? 'text-green-600' : 'text-red-600'}>
-              {isCorrect ? '✅ Correct!' : '❌ Incorrect.'}
-            </p>
-          </div>
+          {isGameOver && (
+            <div className="space-y-4">
+              <p className="text-base font-medium text-gray-900">
+                You answered {correctCount} out of 10 questions correctly!
+              </p>
+              <ScoreBoard scores={scores} />
+            </div>
+          )}
 
           <Button
             className="cursor-pointer"
             onClick={() => {
-              setIsOpen(false)
-              fetchQuestion()
+              if (isGameOver) {
+                handleResetGame()
+              } else {
+                handleNext()
+              }
             }}
           >
-            Next Question
+            {isGameOver ? 'Start a new game' : 'Next Question'}
           </Button>
         </DialogContent>
       </Dialog>
