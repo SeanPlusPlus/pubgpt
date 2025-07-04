@@ -6,6 +6,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { loadingMessages } from './loadingMessages'
+import ScoreBoard from './ScoreBoard'
 
 type QuestionData = {
   question: string
@@ -114,6 +115,8 @@ export function QuestionCard({ mock = false }: QuestionCardProps) {
               </div>
             ))}
           </RadioGroup>
+
+          <ScoreBoard />
         </CardContent>
       </Card>
 
