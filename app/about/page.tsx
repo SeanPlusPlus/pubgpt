@@ -11,6 +11,8 @@ export default function AboutPage() {
           <h1 className="text-2xl font-bold text-center">About PubGPT</h1>
           <p className="text-muted-foreground text-sm text-center">
             PubGPT is an AI-powered pub quiz game that generates new trivia questions on demand.
+            It’s played as a <strong>10-question game</strong> — a completely arbitrary number I
+            picked, just for fun!
           </p>
           <div className="text-sm leading-relaxed text-gray-700 space-y-4">
             <p>
