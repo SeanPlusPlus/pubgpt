@@ -1,6 +1,12 @@
 'use client'
 
-export default function ScoreBoard({ scores }: { scores: (null | 'success' | 'error')[] }) {
+export default function ScoreBoard({
+  scores,
+  hideTitle = false,
+}: {
+  scores: (null | 'success' | 'error')[]
+  hideTitle?: boolean
+}) {
   const getEmoji = (status: string | null) => {
     if (status === 'success') return '✅'
     if (status === 'error') return '❌'
@@ -9,7 +15,7 @@ export default function ScoreBoard({ scores }: { scores: (null | 'success' | 'er
 
   return (
     <div className="mt-8">
-      <h2 className="text-center text-lg font-semibold mb-4">Scoreboard</h2>
+      {!hideTitle && <h2 className="text-center text-lg font-semibold mb-4">Scoreboard</h2>}
 
       <div className="flex justify-center">
         <div className="bg-white rounded-lg overflow-hidden">

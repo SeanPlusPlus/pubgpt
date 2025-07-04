@@ -26,6 +26,7 @@ export function QuestionCard({ mock = false }: QuestionCardProps) {
   const [loadingMessage, setLoadingMessage] = useState('')
   const [scores, setScores] = useState<(null | 'success' | 'error')[]>(Array(10).fill(null))
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
+  const [hasSeenFinalScore, setHasSeenFinalScore] = useState(false)
 
   const fetchQuestion = async () => {
     setLoading(true)
@@ -55,10 +56,15 @@ export function QuestionCard({ mock = false }: QuestionCardProps) {
       return newScores
     })
 
-    setCurrentQuestionIndex((prev) => prev + 1)
-    setIsOpen(false)
+    const nextIndex = currentQuestionIndex + 1
 
-    if (currentQuestionIndex + 1 < 10) {
+    if (nextIndex >= 10) {
+      // We’ve finished all questions, so mark game over
+      setHasSeenFinalScore(true)
+      setIsOpen(false)
+    } else {
+      setCurrentQuestionIndex(nextIndex)
+      setIsOpen(false)
       fetchQuestion()
     }
   }
@@ -68,6 +74,7 @@ export function QuestionCard({ mock = false }: QuestionCardProps) {
     setCurrentQuestionIndex(0)
     setSelectedOption('')
     setIsOpen(false)
+    setHasSeenFinalScore(false)
     fetchQuestion()
   }
 
@@ -102,9 +109,10 @@ export function QuestionCard({ mock = false }: QuestionCardProps) {
   if (!data) return null
 
   const isCorrect = selectedOption === data.answer
-  const isGameOver = currentQuestionIndex >= 10
+  const isGameOver = hasSeenFinalScore
 
   const correctCount = scores.filter((s) => s === 'success').length
+  const isLastQuestion = currentQuestionIndex === 9
 
   return (
     <>
@@ -212,7 +220,7 @@ export function QuestionCard({ mock = false }: QuestionCardProps) {
               <p className="text-base font-medium text-gray-900">
                 You answered {correctCount} out of 10 questions correctly!
               </p>
-              <ScoreBoard scores={scores} />
+              <ScoreBoard scores={scores} hideTitle={true} />
             </div>
           )}
 
@@ -226,7 +234,11 @@ export function QuestionCard({ mock = false }: QuestionCardProps) {
               }
             }}
           >
-            {isGameOver ? 'Start a new game' : 'Next Question'}
+            {isGameOver
+              ? 'Start a new game'
+              : isLastQuestion
+                ? 'View Final Score'
+                : 'Next Question'}
           </Button>
         </DialogContent>
       </Dialog>
