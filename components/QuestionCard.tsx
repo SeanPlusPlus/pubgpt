@@ -6,6 +6,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Label } from '@/components/ui/label'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
+import { loadingMessages } from './loadingMessages'
 
 type QuestionData = {
   question: string
@@ -22,6 +23,7 @@ export function QuestionCard({ mock = false }: QuestionCardProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [data, setData] = useState<QuestionData | null>(null)
   const [loading, setLoading] = useState(true)
+  const [loadingMessage, setLoadingMessage] = useState('')
 
   const fetchQuestion = async () => {
     setLoading(true)
@@ -31,9 +33,11 @@ export function QuestionCard({ mock = false }: QuestionCardProps) {
     const json = await res.json()
     setData(json)
     setLoading(false)
+    setLoadingMessage(loadingMessages[Math.floor(Math.random() * loadingMessages.length)])
   }
 
   useEffect(() => {
+    setLoadingMessage(loadingMessages[Math.floor(Math.random() * loadingMessages.length)])
     fetchQuestion()
   }, [mock])
 
@@ -44,7 +48,7 @@ export function QuestionCard({ mock = false }: QuestionCardProps) {
 
   if (loading) {
     return (
-      <div className="w-full flex justify-center items-center p-8">
+      <div className="w-full flex flex-col justify-center items-center p-8 space-y-4">
         <svg
           className="animate-spin h-8 w-8 text-gray-500"
           xmlns="http://www.w3.org/2000/svg"
@@ -65,6 +69,7 @@ export function QuestionCard({ mock = false }: QuestionCardProps) {
             d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
           />
         </svg>
+        <p className="text-sm text-gray-600">{loadingMessage}</p>
       </div>
     )
   }
@@ -84,10 +89,10 @@ export function QuestionCard({ mock = false }: QuestionCardProps) {
               <div
                 key={key}
                 className="
-        flex flex-nowrap items-center gap-3 
-        p-4 rounded-lg border border-border 
-        hover:bg-accent/40 transition-colors
-      "
+                  flex flex-nowrap items-center gap-3 
+                  p-4 rounded-lg border border-border 
+                  hover:bg-accent/40 transition-colors
+                "
               >
                 <RadioGroupItem
                   value={key}
@@ -155,7 +160,7 @@ export function QuestionCard({ mock = false }: QuestionCardProps) {
             </div>
 
             <p className={isCorrect ? 'text-green-600' : 'text-red-600'}>
-              {isCorrect ? '✅ Correct!' : `❌ Incorrect.`}
+              {isCorrect ? '✅ Correct!' : '❌ Incorrect.'}
             </p>
           </div>
 
