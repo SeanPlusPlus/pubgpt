@@ -12,7 +12,7 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 })
 
-// === Constants to avoid repetition ===
+// === Constants ===
 const SITE_TITLE = 'PubGPT'
 const SITE_DESCRIPTION = 'An LLM-powered pub quiz trivia game.'
 const SITE_URL = 'https://pubgpt.vercel.app'
@@ -20,6 +20,7 @@ const OG_IMAGE_URL = 'https://pubgpt.vercel.app/logo.png'
 const OG_IMAGE_ALT = 'PubGPT Logo'
 const OG_IMAGE_WIDTH = 512
 const OG_IMAGE_HEIGHT = 512
+const FAVICON_URL = '/favicon.png'
 
 export const metadata: Metadata = {
   title: SITE_TITLE,
@@ -45,6 +46,9 @@ export const metadata: Metadata = {
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     images: [OG_IMAGE_URL],
+  },
+  icons: {
+    icon: FAVICON_URL,
   },
 }
 
