@@ -1,5 +1,5 @@
 export const triviaTopics = [
-  // MOVIES
+  // 1. MOVIES
   'Classic Cinema – Pre-2000s films, iconic directors, Oscar winners.',
   'Blockbuster Movies – Billion-dollar films, franchises, box office records.',
   'Cult Classics – Quirky films with passionate fanbases.',
@@ -34,7 +34,7 @@ export const triviaTopics = [
   'Movie Villains – Iconic baddies, memorable performances, evil plans.',
   'Cinematic Visual Effects – Groundbreaking CGI, practical effects, and movie magic.',
 
-  // TELEVISION
+  // 2. TELEVISION
   '90s TV Sitcoms – Friends, Seinfeld, Frasier, and classic laughs.',
   '90s TV Dramas – Buffy, The X-Files, ER, and intense storylines.',
   '90s Kids Shows – Nickelodeon classics, cartoons, and after-school hits.',
@@ -66,7 +66,7 @@ export const triviaTopics = [
   'TV Reboots & Revivals – From Fuller House to Twin Peaks.',
   'TV Miniseries – Iconic limited-run shows, from Chernobyl to Band of Brothers.',
 
-  // GEOGRAPHY & TRAVEL
+  // 3. GEOGRAPHY & TRAVEL
   'World Geography – Capitals, landmarks, borders, natural wonders.',
   'U.S. Geography – States, capitals, national parks, famous places.',
   'Cities of the World – Famous skylines, neighborhoods, city nicknames.',
@@ -98,7 +98,7 @@ export const triviaTopics = [
   'Border Oddities – Exclaves, enclaves, disputed territories.',
   'Geography Superlatives – Largest, smallest, highest, deepest places.',
 
-  // MUSIC
+  // 4. MUSIC
   'Pop Music Through the Decades – From Elvis to Beyoncé.',
   'Classic Rock – Bands, albums, iconic songs.',
   'Hip-Hop & Rap – Artists, albums, lyrics, milestones.',
@@ -110,7 +110,7 @@ export const triviaTopics = [
   'Grammy Awards – Winners, records, controversies.',
   'Music Festivals – Coachella, Glastonbury, Lollapalooza.',
 
-  // SCIENCE & NATURE
+  // 5. SCIENCE & NATURE
   'Science & Nature – Chemistry, biology, animals, the natural world.',
   'Space & Astronomy – Planets, NASA missions, stars, and cosmic trivia.',
   'Human Body – Anatomy, organs, medical oddities.',
@@ -122,7 +122,7 @@ export const triviaTopics = [
   'Endangered Species – Animals at risk, conservation facts.',
   'Physics & Engineering – Laws of nature and famous experiments.',
 
-  // LITERATURE & ARTS
+  // 6. LITERATURE & ARTS
   'Literature & Books – Authors, opening lines, banned books.',
   'Children’s Books – Dr. Seuss, Harry Potter, Roald Dahl, classics.',
   'Mystery & Crime Novels – Famous detectives, authors, and twists.',
@@ -134,7 +134,7 @@ export const triviaTopics = [
   'Art & Artists – Famous paintings, artists, art movements.',
   'Philosophy & Thinkers – Famous philosophers and big ideas.',
 
-  // HISTORY & CULTURE
+  // 7. HISTORY & CULTURE
   'History & Politics – Wars, leaders, revolutions.',
   'U.S. Presidents – Fun facts, pets, speeches, and quirks.',
   'British Royal History – Monarchs, scandals, royal weddings.',
@@ -146,7 +146,7 @@ export const triviaTopics = [
   'Cold War History – Espionage, nuclear tensions, Berlin Wall.',
   'Explorers & Expeditions – Voyages of discovery around the world.',
 
-  // FOOD & DRINK
+  // 8. FOOD & DRINK
   'Food & Drink – Cuisine, cocktails, famous chefs.',
   'International Cuisines – Regional dishes, spices, and traditions.',
   'Cocktail Culture – Classic recipes, spirits, and mixology trivia.',
@@ -158,7 +158,7 @@ export const triviaTopics = [
   'Wine & Vineyards – Regions, grapes, and wine trivia.',
   'Vegetarian & Vegan Cuisine – Plant-based dishes, chefs, trends.',
 
-  // SPORTS & GAMES
+  // 9. SPORTS & GAMES
   'Sports & Games – Olympics, chess, soccer, Super Bowl MVPs.',
   'NFL Trivia – Teams, players, records, Super Bowls.',
   'NBA Trivia – Teams, MVPs, legendary games.',
@@ -180,7 +180,7 @@ export const triviaTopics = [
   'Wrestling Entertainment – WWE superstars, iconic matches, storylines.',
   'Winter Sports – Skiing, snowboarding, biathlon, and icy competitions.',
 
-  // FUN & RANDOM
+  // 10. FUN & RANDOM
   'Weird But True – Guinness records, strange inventions, odd laws.',
   'Famous Quotes – Identify who said it: from politicians to celebrities.',
   'Famous Firsts – First in history across various fields.',
@@ -192,7 +192,7 @@ export const triviaTopics = [
   'Animals in Pop Culture – Famous fictional pets, mascots, and creatures.',
   'Holidays & Traditions – Christmas, Diwali, Halloween customs worldwide.',
 
-  // TECHNOLOGY & DIGITAL LIFE
+  // 11. TECHNOLOGY & DIGITAL LIFE
   'Computers & Internet History – Milestones from ENIAC to the modern web.',
   'Tech Companies & Founders – Apple, Google, Microsoft, and the minds behind them.',
   'Apps & Social Media – Instagram, TikTok, Twitter trivia.',
@@ -204,7 +204,7 @@ export const triviaTopics = [
   'Tech Buzzwords – Cloud, big data, IoT and what they mean.',
   'Digital Pop Culture – Memes, viral videos, and internet icons.',
 
-  // BUSINESS & ECONOMICS
+  // 12. BUSINESS & ECONOMICS
   'Famous Entrepreneurs – Visionaries who built empires.',
   'Stock Market Basics – Indices, ticker symbols, and Wall Street trivia.',
   'Brands & Logos – Recognize the brand by its logo.',
@@ -216,7 +216,7 @@ export const triviaTopics = [
   'Global Trade – Imports, exports, and trade partners.',
   'Billionaires Club – The world’s wealthiest people and facts about them.',
 
-  // LIFESTYLE & WELLNESS
+  // 13. LIFESTYLE & WELLNESS
   'Fitness & Exercise – Workouts, sports science, and trends.',
   'Meditation & Mindfulness – Practices, benefits, and origins.',
   'Healthy Eating – Superfoods, nutrition facts, diet trends.',
