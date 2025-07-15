@@ -35,15 +35,73 @@ export default function AboutPage() {
               just a little bit cheeky.
             </p>
             <p>
-              Under the hood, the trivia engine randomly selects from a pool of themed categories
-              like classic cinema, world geography, or “weird but true” facts. It sends a structured
-              prompt to GPT-4, requesting a strict JSON response containing a question, four labeled
-              choices, and the correct answer’s letter.
+              Under the hood, the trivia engine randomly selects from a huge pool of themed
+              categories spanning movies, TV, sports, science, culture, and tons more. Here’s a peek
+              at how the categories and prompts look behind the scenes:
             </p>
+            <pre className="bg-gray-100 text-xs p-4 rounded whitespace-pre-wrap overflow-x-auto">
+              {`// EXAMPLES OF TRIVIA CATEGORIES
+// (just a sampling — there are over 100!)
+
+MOVIES
+  - Classic Cinema
+  - Superhero Films
+  - Movie Soundtracks
+
+MUSIC
+  - Pop Music Through the Decades
+  - Hip-Hop & Rap
+  - Music Festivals
+
+GEOGRAPHY & TRAVEL
+  - World Geography
+  - Cities of the World
+  - Flags of the World
+
+SPORTS & GAMES
+  - NFL Trivia
+  - Olympic History
+  - Esports & Video Games
+
+FUN & RANDOM
+  - Mythology & Legends
+  - Weird But True
+  - Pop Culture Moments
+
+// PROMPT USED TO GENERATE A QUESTION
+
+export const generateTriviaJSONPrompt = (topic) => \`
+You are an expert pub quiz master. Your task is to generate one fun and challenging multiple-choice trivia question about the topic: "\${topic}".
+
+Requirements:
+
+- Make the question engaging and well-phrased—not too dry.
+- Avoid repeating common trivia questions; aim for unique angles or surprising facts.
+- Vary question styles: facts, identification, or “which of these is true?”
+- Ensure all four choices are diverse and plausible.
+- The correct answer must be accurate and verifiable.
+- Keep the question concise (max 2-3 sentences).
+- Return ONLY the JSON object. No extra commentary.
+
+Schema:
+
+{
+  "question": "string (the trivia question)",
+  "choices": {
+    "A": "string",
+    "B": "string",
+    "C": "string",
+    "D": "string"
+  },
+  "answer": "A" | "B" | "C" | "D"
+}
+\`;
+`}
+            </pre>
             <p>
-              After receiving the response, the backend strips any extra Markdown formatting, parses
-              the raw JSON safely, and serves it directly to the client for rendering. This makes
-              the game feel fast, seamless, and robust—even when GPT-4 tries to get fancy. ⚡️
+              After receiving GPT-4’s answer, PubGPT strips any extra formatting, safely parses the
+              JSON, and serves up your next question. The result? A seamless, ever-changing quiz
+              experience that feels like you’re right at the pub. 🍻
             </p>
             <p>
               Want to peek under the hood or contribute? Check out the code on{' '}
