@@ -41,7 +41,7 @@ export default function AboutPage() {
             </p>
             <pre className="bg-gray-100 text-xs p-4 rounded whitespace-pre-wrap overflow-x-auto">
               {`// EXAMPLES OF TRIVIA CATEGORIES
-// (just a sampling — there are over 100!)
+// (just a sampling — there are literally hundreds!)
 
 MOVIES
   - Classic Cinema
